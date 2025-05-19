@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}Створити запис - Цифрова лікарня{% endblock title %}
+
+{% block content %}
+<h2 class="mb-3">Створити запис</h2>
+<form method="POST" class="border p-4 bg-white rounded shadow-sm" style="max-width: 480px;">
+  <div class="mb-3">
+    <label for="doctor_id" class="form-label">Оберіть лікаря:</label>
+    <select class="form-select" id="doctor_id" name="doctor_id">
+      {% for doc in doctors %}
+        <option value="{{ doc.id }}">
+          {{ doc.user.username }} ({{ doc.specialization }})
+        </option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="appointment_time" class="form-label">Дата й час (РРРР-ММ-ДД ГГ:ХХ):</label>
+    <input type="text" class="form-control" id="appointment_time"
+           name="appointment_time" placeholder="2025-03-05 14:30" required>
+  </div>
+  <button type="submit" class="btn btn-accent">Підтвердити</button>
+</form>
+{% endblock content %}
+
+

@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block title %}Увійти - Цифрова лікарня{% endblock title %}
+
+{% block content %}
+<h2 class="mb-3">Вхід до системи</h2>
+<form method="POST" action="{{ url_for('auth_bp.login') }}" 
+      class="border p-4 bg-white rounded shadow-sm" style="max-width: 480px;">
+  <div class="mb-3">
+    <label for="username_or_email" class="form-label">Ім'я користувача або Email:</label>
+    <input type="text" class="form-control" id="username_or_email" name="username_or_email" required>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Пароль:</label>
+    <input type="password" class="form-control" id="password" name="password" required>
+  </div>
+  <button type="submit" class="btn btn-accent">Увійти</button>
+</form>
+{% endblock content %}
+
+

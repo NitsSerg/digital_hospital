@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block title %}Реєстрація - Цифрова лікарня{% endblock title %}
+
+{% block content %}
+<h2 class="mb-3">Реєстрація</h2>
+<form method="POST" action="{{ url_for('auth_bp.register') }}" 
+      class="border p-4 bg-white rounded shadow-sm" style="max-width: 480px;">
+  <div class="mb-3">
+    <label for="username" class="form-label">Ім'я користувача:</label>
+    <input type="text" class="form-control" id="username" name="username" required>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Електронна пошта:</label>
+    <input type="email" class="form-control" id="email" name="email" required>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Пароль:</label>
+    <input type="password" class="form-control" id="password" name="password" required>
+  </div>
+  <div class="mb-3">
+    <label for="role" class="form-label">Роль:</label>
+    <select class="form-select" id="role" name="role">
+      <option value="patient" selected>Пацієнт</option>
+      <option value="doctor">Лікар</option>
+      <option value="admin">Адміністратор</option>
+    </select>
+  </div>
+  <button type="submit" class="btn btn-accent">Зареєструватися</button>
+</form>
+<p class="mt-3">
+  Уже маєте обліковий запис?
+  <a href="{{ url_for('auth_bp.login') }}">Увійдіть</a>
+</p>
+{% endblock content %}
+

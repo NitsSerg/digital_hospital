@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+{% block title %}Профіль лікаря - Цифрова лікарня{% endblock title %}
+
+{% block content %}
+<h2 class="mb-3">Профіль лікаря</h2>
+
+<form method="POST" class="border p-4 bg-white rounded shadow-sm" style="max-width: 480px;">
+  <div class="mb-3">
+    <label for="specialization" class="form-label">Спеціалізація:</label>
+    <input type="text" class="form-control" id="specialization"
+           name="specialization"
+           value="{{ doctor.specialization if doctor else '' }}">
+  </div>
+  <div class="mb-3">
+    <label for="experience_years" class="form-label">Стаж (років):</label>
+    <input type="number" class="form-control" id="experience_years"
+           name="experience_years"
+           value="{{ doctor.experience_years if doctor else '1' }}">
+  </div>
+  <div class="mb-3">
+    <label for="work_start" class="form-label">Початок роботи (ГГ:ХХ):</label>
+    <input type="text" class="form-control" id="work_start"
+           name="work_start"
+           value="{{ doctor.work_start if doctor else '09:00' }}">
+  </div>
+  <div class="mb-3">
+    <label for="work_end" class="form-label">Кінець роботи (ГГ:ХХ):</label>
+    <input type="text" class="form-control" id="work_end"
+           name="work_end"
+           value="{{ doctor.work_end if doctor else '17:00' }}">
+  </div>
+  <button type="submit" class="btn btn-accent">Зберегти</button>
+</form>
+
+{% if doctor %}
+  <hr>
+  <h3 class="mb-3">Мої записи</h3>
+  {% if appointments and appointments|length > 0 %}
+    <ul class="list-group">
+    {% for appt in appointments %}
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div>
+          <strong>ID запису:</strong> {{ appt.id }}<br>
+          <strong>Пацієнт (ID):</strong> {{ appt.patient_id }}<br>
+          <strong>Час:</strong> {{ appt.appointment_time }}<br>
+          <strong>Статус:</strong> {{ appt.status }}
+        </div>
+        <div>
+          {% if appt.status == 'scheduled' %}
+            <!-- Кнопка скасувати -->
+            <form method="POST" class="d-inline"
+                  action="{{ url_for('appointment_bp.cancel_appointment', appointment_id=appt.id) }}">
+              <button type="submit" class="btn btn-sm btn-danger">Скасувати</button>
+            </form>
+            <a href="{{ url_for('appointment_bp.change_appointment', appointment_id=appt.id) }}"
+               class="btn btn-sm btn-outline-secondary">Змінити</a>
+          {% endif %}
+        </div>
+      </li>
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>Немає жодного запису на прийом.</p>
+  {% endif %}
+{% else %}
+  <div class="alert alert-info mt-3">
+    У вас ще немає профілю лікаря. Заповніть форму вище, щоб його створити.
+  </div>
+{% endif %}
+{% endblock content %}
+
+

@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block title %}Графік лікаря - Цифрова лікарня{% endblock title %}
+
+{% block content %}
+<h2 class="mb-3">Графік для {{ doctor.user.username }}</h2>
+<p class="mb-3">
+  <strong>Спеціалізація:</strong> {{ doctor.specialization }}<br>
+  <strong>Стаж:</strong> {{ doctor.experience_years }} р.<br>
+  <strong>Робочі години:</strong> {{ doctor.work_start }} - {{ doctor.work_end }}
+</p>
+<div class="alert alert-info">
+  Тут можна було б відобразити доступні слоти для запису.
+</div>
+{% endblock content %}
+
+

@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block title %}Головна - Цифрова лікарня{% endblock title %}
+
+{% block content %}
+<div class="text-center">
+  <h1 class="mb-4">Ласкаво просимо до Цифрової лікарні</h1>
+  <p>
+    <a href="{{ url_for('doctor_bp.list_doctors') }}" class="btn btn-accent me-2">Переглянути лікарів</a>
+    <a href="{{ url_for('appointment_bp.create_appointment') }}" class="btn btn-outline-success">Записатися на прийом</a>
+  </p>
+</div>
+{% endblock content %}
+
+

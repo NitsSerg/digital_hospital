@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block title %}Лікарі - Цифрова лікарня{% endblock title %}
+
+{% block content %}
+<h2 class="mb-3">Список лікарів</h2>
+<form method="GET" class="row g-3 mb-3">
+  <div class="col-auto">
+    <label for="spec" class="col-form-label">Фільтрувати за спеціалізацією:</label>
+  </div>
+  <div class="col-auto">
+    <input type="text" class="form-control" id="spec" name="specialization" placeholder="наприклад, Кардіолог">
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-secondary">Фільтрувати</button>
+  </div>
+</form>
+
+<div class="list-group">
+{% for doc in doctors %}
+  <a href="{{ url_for('doctor_bp.show_schedule', doc_id=doc.id) }}" class="list-group-item list-group-item-action">
+    <strong>{{ doc.user.username }}</strong> — {{ doc.specialization }}
+    <span class="text-muted float-end">Стаж: {{ doc.experience_years }} р.</span>
+  </a>
+{% endfor %}
+</div>
+{% endblock content %}
+
+
+

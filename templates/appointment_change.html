@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}Змінити запис - Цифрова лікарня{% endblock title %}
+
+{% block content %}
+<h2 class="mb-3">Змінити запис #{{ appt.id }}</h2>
+<form method="POST" class="border p-4 bg-white rounded shadow-sm" style="max-width: 480px;">
+  <div class="mb-3">
+    <label for="new_time" class="form-label">Нова дата й час (РРРР-ММ-ДД ГГ:ХХ):</label>
+    <input type="text" class="form-control" id="new_time" name="new_time"
+           placeholder="2025-03-06 15:00" required>
+  </div>
+  <button type="submit" class="btn btn-accent">Зберегти</button>
+</form>
+{% endblock content %}
+
